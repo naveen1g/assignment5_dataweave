@@ -1,0 +1,30 @@
+{
+  "items": [
+    {
+      "category": "book",
+      "price": 1,
+      "id": 1,
+      "properties": {
+        "title": {
+          "#text": "the great britain"
+        },
+        "author": [
+          "harry potter"
+        ],
+        "year": 2020
+      }
+    },
+    {
+      "category": "book",
+      "price": 5,
+      "id": 2,
+      "properties": {
+        "title": {
+          "-lang": "en"
+        },
+        "author": "tim",
+        "year": 2244
+    }
+    }
+  ]
+}

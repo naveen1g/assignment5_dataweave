@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="inputtype" format="json">
+      <types:shape format="weave" example="examples/mapdata4.json"><![CDATA[%dw 2.0
+
+type inputtype = {|
+  books: Array<{|    "-category": String,     title: {|      "-lang": String,       "#text": String    |},     author: Array<String>, 
+    year: String, 
+    price: String
+  |}>
+|} {"example": "{\\\"books\\\":[{\\\"-category\\\":\\\"web\\\",\\\"title\\\":{\\\"-lang\\\":\\\"uk\\\",\\\"#text\\\":\\\"the great london\\\"},\\\"author\\\":[\\\"naveen\\\"],\\\"year\\\":\\\"2020\\\",\\\"price\\\":\\\"000\\\"},{\\\"-category\\\":\\\"web\\\",\\\"title\\\":{\\\"-lang\\\":\\\"chn\\\",\\\"#text\\\":\\\"corona effects\\\"},\\\"author\\\":\\\"jing bing\\\",\\\"year\\\":\\\"2020\\\",\\\"price\\\":\\\"100\\\"}]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="stringdemojson" format="json">
+      <types:shape format="weave" example="examples/manuString.json"><![CDATA[%dw 2.0
+
+type stringdemojson = {|
+  firstName: String, 
+  lastName: String, 
+  city: String
+|} {"example": "{\\\"firstName\\\":\\\"naveen\\\",\\\"lastName\\\":\\\"gupta\\\",\\\"city\\\":\\\"dhand\\\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="data" format="json">
+      <types:shape format="weave" example="examples/data.json"><![CDATA[%dw 2.0
+
+type data = {| plane: Number {"typeId": "int"} |} {"example": "{\\\"plane\\\":12}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="outputtype" format="json">
+      <types:shape format="weave" example="examples/outputmap1.json"><![CDATA[%dw 2.0
+
+type outputtype = {|
+  items: Array<{|    category: String,     price: Number {"typeId": "int"},     id: Number {"typeId": "int"},     properties: {|      title: {| "#text": String |},       author: Array<String>, 
+      year: Number {"typeId": "int"}
+    |}
+  |}>
+|} {"example": "{\\\"items\\\":[{\\\"category\\\":\\\"book\\\",\\\"price\\\":1,\\\"id\\\":1,\\\"properties\\\":{\\\"title\\\":{\\\"#text\\\":\\\"the great britain\\\"},\\\"author\\\":[\\\"harry potter\\\"],\\\"year\\\":2020}},{\\\"category\\\":\\\"book\\\",\\\"price\\\":5,\\\"id\\\":2,\\\"properties\\\":{\\\"title\\\":{\\\"-lang\\\":\\\"en\\\"},\\\"author\\\":\\\"tim\\\",\\\"year\\\":2244}}]}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#5f21abc3-7eb5-4207-888c-01393034a29b"/>
+  <types:enrichment select="#ef211648-df4d-4c1d-ba32-5681f0c07f58">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="stringdemojson"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#ca638118-20c1-4821-8631-6014807731de">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="stringdemojson"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

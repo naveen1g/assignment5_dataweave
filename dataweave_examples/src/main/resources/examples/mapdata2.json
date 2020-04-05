@@ -1,0 +1,27 @@
+{
+    "books": [
+      {
+        "-category": "web",
+        "title": {
+          "-lang": "uk",
+          "#text": "the great london"
+        },
+        "author": [
+          "naveen",
+          "naresh"
+        ],
+        "year": "2020",
+        "price": "000"
+      },
+      {
+        "-category": "web",
+        "title": {
+          "-lang": "chn",
+          "#text": "corona effects"
+        },
+        "author": "jing bing",
+        "year": "2020",
+        "price": "100"
+      }
+    ]
+}
